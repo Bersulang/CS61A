@@ -124,8 +124,8 @@ def make_repeater(f, n):
     """
     "*** YOUR CODE HERE ***"
     def repeat(x):
-        k=0
-        while k<0:
+        k=1
+        while k<=n:
             x,k=f(x),k+1
         return x
     return repeat
