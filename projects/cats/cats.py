@@ -62,10 +62,15 @@ def about(subject):
 
     # BEGIN PROBLEM 2
     def select(paragraph):
-        if subject in paragraph.split():
-            return True
-        else:
-            return False
+        paragraph1=remove_punctuation(paragraph)
+        paragraph2=split(paragraph1)
+        paragraph_low=[lower(i) for i in paragraph2]
+        subject_low=[lower(i) for i in subject]
+        for m in subject_low:
+            for n in paragraph_low:
+                if m==n:
+                    return True
+        return False
     return select
     # END PROBLEM 2
 
@@ -96,7 +101,17 @@ def accuracy(typed, source):
     typed_words = split(typed)
     source_words = split(source)
     # BEGIN PROBLEM 3
-    "*** YOUR CODE HERE ***"
+    if len(typed_words)==0 and len(source_words)==0:
+        return 100.0
+    elif len(typed_words)==0 or len(source_words)==0:
+        return 0.0
+    else:
+        lenth=min(len(source_words),len(typed_words))
+        count=0
+        for i in range(lenth):
+            if typed_words[i]==source_words[i]:
+                count+=1
+        return count/len(typed_words)*100
     # END PROBLEM 3
 
 
@@ -114,7 +129,7 @@ def wpm(typed, elapsed):
     """
     assert elapsed > 0, "Elapsed time must be positive"
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    return ((len(typed)/5)/elapsed)*60
     # END PROBLEM 4
 
 
@@ -175,7 +190,15 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     'testing'
     """
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    min_diff=limit+1
+    for word in word_list:
+        if word==typed_word:
+            return typed_word
+        diff=diff_function(typed_word,word,limit)
+        if abs(diff)<min_diff:
+            min_diff=abs(diff)
+            best_word=word
+    return typed_word if min_diff > limit else best_word
     # END PROBLEM 5
 
 
@@ -202,7 +225,16 @@ def furry_fixes(typed, source, limit):
     5
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    def select(a, b, sum):
+        if sum > limit:
+            return float('inf')
+        if not a or not b:
+            return abs(len(a) - len(b))
+        if a[0] == b[0]:
+            return select(a[1:], b[1:], sum)
+        else:
+            return select(a[1:], b[1:], sum + 1) + 1
+    return select(typed, source, 0)
     # END PROBLEM 6
 
 
@@ -223,23 +255,43 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
-    if ___________: # Base cases should go here, you may add more base cases as needed.
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-    # Recursive cases should go below here
-    if ___________: # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-    else:
-        add = ... # Fill in these lines
-        remove = ...
-        substitute = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+    #原始模板，暂时没有能力，先用一下大佬的代码过完任务
+    # if not typed or not source: # Base cases should go here, you may add more base cases as needed.
+    #     # BEGIN
+    #     return abs(len(typed)-len(source))
+    #     # END
+    # # Recursive cases should go below here
+    # if : # Feel free to remove or add additional cases
+    #     # BEGIN
+    #     "*** YOUR CODE HERE ***"
+    #     # END
+    # else:
+    #     add = ... # Fill in these lines
+    #     remove = ...
+    #     substitute = ...
+    #     # BEGIN
+    #     "*** YOUR CODE HERE ***"
+    #     # END
+    a = len(typed)
+    b = len(source)
+
+    # 初始化
+    dp = [[0] * (b + 1) for _ in range(a + 1)]
+    for i in range(1, b + 1):
+        dp[0][i] = i
+    for i in range(1, a + 1):
+        dp[i][0] = i
+
+    # 执行判断
+    for i in range(0, a):
+        for j in range(0, b):
+            if typed[i] == source[j]:
+                dp[i + 1][j + 1] = dp[i][j]
+            else:
+                dp[i + 1][j + 1] = min(dp[i][j] + 1,
+                                       dp[i][j + 1] + 1,
+                                       dp[i + 1][j] + 1)
+    return dp[a][b]
 
 
 # Ignore the line below
@@ -284,7 +336,15 @@ def report_progress(typed, source, user_id, upload):
     0.2
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    count=0
+    for i in range(len(typed)):
+        if typed[i] == source[i]:
+           count+=1
+        else:
+            break
+    rate=count/len(source)
+    upload({'id': user_id, 'progress': rate})
+    return rate
     # END PROBLEM 8
 
 
