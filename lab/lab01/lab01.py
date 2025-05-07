@@ -43,7 +43,9 @@ def falling(n, k):
     >>> falling(4, 0)
     1
     """
-    "*** YOUR CODE HERE ***"
+    if k==0:
+        return 1
+    return n*falling(n-1, k-1)
 
 
 def divisible_by_k(n, k):
@@ -66,8 +68,13 @@ def divisible_by_k(n, k):
     >>> c
     0
     """
-    "*** YOUR CODE HERE ***"
-
+    divis,divis_totol = 1,0
+    while divis <= n:
+        if divis % k == 0:
+            print(divis)
+            divis_totol += 1
+        divis += 1
+    return divis_totol
 
 def sum_digits(y):
     """Sum all the digits of y.
@@ -82,7 +89,10 @@ def sum_digits(y):
     >>> a
     6
     """
-    "*** YOUR CODE HERE ***"
+    if y<10:
+        return y
+    else:
+        return y%10 + sum_digits(y//10)
 
 
 def double_eights(n):
@@ -100,7 +110,12 @@ def double_eights(n):
     >>> double_eights(80808080)
     False
     """
-    "*** YOUR CODE HERE ***"
+    while n>10:
+        if n%10==8 and (n//10)%10==8:
+            return True
+        n = n//10
+    return False
+
 def testassert(a):
     '''it's just a test for assert
 
