@@ -31,7 +31,6 @@ def product(n, term):
     >>> product(3, triple)    # 1*3 * 2*3 * 3*3
     162
     """
-    "*** YOUR CODE HERE ***"
     # 思考还得再快点
     i,total=1,1
     while i<=n:
@@ -56,7 +55,6 @@ def accumulate(fuse, start, n, term):
     >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)
     19
     """
-    "*** YOUR CODE HERE ***"
     '''
     if fuse==add:
         i,total=1,0
@@ -122,7 +120,6 @@ def make_repeater(f, n):
     >>> make_repeater(square, 3)(5) # square(square(square(5)))
     390625
     """
-    "*** YOUR CODE HERE ***"
     def repeat(x):
         k=1
         while k<=n:

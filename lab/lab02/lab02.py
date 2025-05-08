@@ -1,4 +1,3 @@
-
 def composite_identity(f, g):
     """
     Return a function with one parameter x that returns True if f(g(x)) is
@@ -13,13 +12,13 @@ def composite_identity(f, g):
     >>> b1(4)                            # (4 + 1) ** 2 != 4 ** 2 + 1
     False
     """
-    "*** YOUR CODE HERE ***"
     def identity(x):
         if f(g(x))==g(f(x)):
             return True
         else:
             return False
     return identity
+
 def sum_digits(y):
     """Return the sum of the digits of non-negative integer y."""
     total = 0
@@ -63,7 +62,6 @@ def count_cond(condition):
     >>> count_primes(20)   # 2, 3, 5, 7, 11, 13, 17, 19
     8
     """
-    "*** YOUR CODE HERE ***"
     def return_function(n):
         i,count=1,0
         while i<=n:
@@ -81,14 +79,12 @@ def multiple(a, b):
     >>> multiple(14, 21)
     42
     """
-    "*** YOUR CODE HERE ***"
     i=1
     while i>0:
         number=a*i
         if number%b==0:
             return a*i
         i+=1
-
 
 
 def cycle(f1, f2, f3):
@@ -117,5 +113,17 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
-
+    def g(n):
+        def h(x):
+            i = 0
+            while i < n:
+                if i % 3 == 0:
+                    x = f1(x)
+                elif i % 3 == 1:
+                    x = f2(x)
+                else:
+                    x = f3(x)
+                i += 1
+            return x
+        return h
+    return g

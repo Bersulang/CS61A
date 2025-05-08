@@ -117,7 +117,7 @@ def double_eights(n):
     return False
 
 def testassert(a):
-    '''it's just a test for assert
+    '''it's just a test about assert
 
     >>> testassert(2)
     Error
