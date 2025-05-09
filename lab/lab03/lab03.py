@@ -17,7 +17,6 @@ def print_if(s, f):
             print(x)
 
 
-
 def close(s, k):
     """Return how many elements of s that are within k of their index.
 

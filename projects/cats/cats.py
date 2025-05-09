@@ -255,23 +255,25 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    #原始模板，暂时没有能力，先用一下大佬的代码过完任务
-    # if not typed or not source: # Base cases should go here, you may add more base cases as needed.
-    #     # BEGIN
-    #     return abs(len(typed)-len(source))
-    #     # END
-    # # Recursive cases should go below here
-    # if : # Feel free to remove or add additional cases
-    #     # BEGIN
-    #     "*** YOUR CODE HERE ***"
-    #     # END
-    # else:
-    #     add = ... # Fill in these lines
-    #     remove = ...
-    #     substitute = ...
-    #     # BEGIN
-    #     "*** YOUR CODE HERE ***"
-    #     # END
+    '''
+    原始模板，暂时没有能力，先用一下大佬的代码过完任务
+    if not typed or not source: # Base cases should go here, you may add more base cases as needed.
+        # BEGIN
+        return abs(len(typed)-len(source))
+        # END
+    # Recursive cases should go below here
+    if : # Feel free to remove or add additional cases
+        # BEGIN
+        "*** YOUR CODE HERE ***"
+        # END
+    else:
+        add = ... # Fill in these lines
+        remove = ...
+        substitute = ...
+        # BEGIN
+        "*** YOUR CODE HERE ***"
+        # END
+    '''
     a = len(typed)
     b = len(source)
 
@@ -398,8 +400,6 @@ def fastest_words(words_and_times):
     player_indices = range(len(times))  # contains an *index* for each player
     word_indices = range(len(words))    # contains an *index* for each word
     # BEGIN PROBLEM 10
-    for i in word_indices:
-        for j in player_indices:
 
     # END PROBLEM 10
 
